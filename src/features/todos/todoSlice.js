@@ -18,21 +18,29 @@ const fetchTodosAPI =async ()=>{
 export const todoSlice = createSlice({
     name:"todos",
     initialState,
-    reducers:{},
-    //Three states, pending, fulfilled , rejected
-    extraReducers: builder => { 
-        builder.addCase(fetchTodos.pending,state =>{
-            state.isLoading = true
-        })
+    reducers:{
+        reset:(state)=>{
+          state.todos=[];
+          state.isLoading = false;
+          state.isError=false;
+          state.errorMessage="";
+        }
+    }
+    },
+        //Three states, pending, fulfilled , rejected
+    extraReducers: (builder) => { 
+        builder.addCase(fetchTodos.pending,(state) =>{
+            state.isLoading = true;
+        });
         builder.addCase(fetchTodos.fulfilled,(state,action)=>{
-            state.isLoading = false
-            state.todos =action.payload
-        })
+            state.isLoading = false;
+            state.todos =action.payload;
+        });
         builder.addCase(fetchTodos.rejected,(state,action)=>{
             state.isLoading = false
             state.isError = true
             state.errorMessage =action.payload
-        })
+        });
 
     }
 });

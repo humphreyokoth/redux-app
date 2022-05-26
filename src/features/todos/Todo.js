@@ -14,6 +14,12 @@ const Todo = () => {
       onClick={ ()=> dispatch(fetchTodos())}>
         {isLoading ? 'Loading...' : 'Load Todos'}
       </button>
+      {isError && <div>{errorMessage}</div>}
+      <ul>
+        {todos.map((todo,idx)=>(
+          <li key ={idx}>{todo.todo}</li>
+        ))}
+      </ul>
     </div>
   )
 }
