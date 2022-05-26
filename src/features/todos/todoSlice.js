@@ -57,6 +57,7 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos",
     }
 )
 
+export const {reset} = todoSlice.actions;
 export const todosSelector = (state)=> state.todos;
 
 export default todoSlice.reducer;
