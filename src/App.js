@@ -1,15 +1,15 @@
 import React from 'react';
 
-import Todos from './features/todos/todoSlice';
+import Todo from './features/todos/Todo';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-    Hello world
+         <Todo/>
       </header>
-    <Todos/>
+    
     </div>
   );
 }
