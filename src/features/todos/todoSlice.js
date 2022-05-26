@@ -25,8 +25,8 @@ export const todoSlice = createSlice({
           state.isError=false;
           state.errorMessage="";
         }
-    }
     },
+    
         //Three states, pending, fulfilled , rejected
     extraReducers: (builder) => { 
         builder.addCase(fetchTodos.pending,(state) =>{
