@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 
+import Todos from './features/todos/todoSlice';
 import './App.css';
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <header className="App-header">
     Hello world
       </header>
+    <Todos/>
     </div>
   );
 }
