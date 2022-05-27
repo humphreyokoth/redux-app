@@ -51,7 +51,7 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos",
         const todos = await fetchTodosAPI();
         return todos;
     } catch (error) {
-        return thunkAPI.rejectedWithValue(error)
+        return thunkAPI.rejectedWithValue(error.message)
     }
         
     }
