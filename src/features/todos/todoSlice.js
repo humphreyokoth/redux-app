@@ -46,12 +46,12 @@ export const todoSlice = createSlice({
 });
 
 export const fetchTodos = createAsyncThunk("todos/fetchTodos",
-    async (thunkAPI)=> {
+    async (_,thunkAPI)=> {
     try {
         const todos = await fetchTodosAPI();
         return todos;
     } catch (error) {
-        return thunkAPI.rejectedWithValue(error.message)
+        return thunkAPI.rejectedWithValue(error)
     }
         
     }
