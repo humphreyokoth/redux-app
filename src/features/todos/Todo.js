@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector,useDispatch } from 'react-redux';
-import {todosSelector,fetchTodos} from './todoSlice'
+import {todosSelector,fetchTodos, reset} from './todoSlice'
 
 
 const Todo = () => {
@@ -14,6 +14,7 @@ const Todo = () => {
       onClick={ ()=> dispatch(fetchTodos())}>
         {isLoading ? 'Loading...' : 'Load Todos'}
       </button>
+      <button onClick={()=> dispatch(reset())}>Reset</button>
       {isError && <div>{errorMessage}</div>}
       <ul>
         {todos.map((todo,idx)=>(
