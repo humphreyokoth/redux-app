@@ -5,6 +5,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 const initialState = {
 
     todos:[],
+    todo:{},
     isLoading:false,
     isError:false,
     errorMessage:""
@@ -12,9 +13,14 @@ const initialState = {
 const fetchTodosAPI =async ()=>{
     const res = await fetch('https://dummyjson.com/todos')
     const {todos} =  await res.json()
-    throw new Error("Something went wrong")
+   return todos
 }
 
+const fetchTodoAPI = async ()=>{
+    const res = await fetch('https://dummyjson.com/todos')
+    const {todos} =  await res.json()
+   return todos
+}
 export const todoSlice = createSlice({
     name:"todos",
     initialState,
@@ -49,6 +55,18 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos",
     async (_,thunkAPI)=> {
     try {
         const todos = await fetchTodosAPI();
+        return todos;
+    } catch (error) {
+        return thunkAPI.rejectedWithValue(error)
+    }
+        
+    }
+)
+
+export const fetchTodo = createAsyncThunk("todos/fetchTodo",
+    async (_,thunkAPI)=> {
+    try {
+        const todos = await fetchTodoAPI();
         return todos;
     } catch (error) {
         return thunkAPI.rejectedWithValue(error)
