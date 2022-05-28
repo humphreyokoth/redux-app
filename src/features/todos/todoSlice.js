@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 
-// Arrays of todoss, loading and error
+// Arrays of todos, loading and error
 const initialState = {
 
     todos:[],
@@ -63,7 +63,7 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos",
     }
 )
 
-export const fetchTodo = createAsyncThunk("todos/fetchTodo",
+export const fetchTodo = createAsyncThunk("todo/fetchTodo",
     async (_,thunkAPI)=> {
     try {
         const todos = await fetchTodoAPI();
