@@ -3,7 +3,6 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // Arrays of todos, loading and error
 const initialState = {
-
     todos:[],
     todo:{},
     isLoading:false,
@@ -16,10 +15,10 @@ const fetchTodosAPI =async ()=>{
    return todos
 }
 
-const fetchTodoAPI = async ()=>{
-    const res = await fetch('https://dummyjson.com/todos')
-    const {todos} =  await res.json()
-   return todos
+const fetchTodoAPI = async (id)=>{
+    const res = await fetch(`https://dummyjson.com/todos/${id}`)
+    const data =  await res.json()
+   return data;
 }
 export const todoSlice = createSlice({
     name:"todos",
@@ -47,6 +46,18 @@ export const todoSlice = createSlice({
             state.isError = true
             state.errorMessage =action.payload
         });
+        builder.addCase(fetchTodo.pending,(state) =>{
+            state.isLoading = true;
+        });
+        builder.addCase(fetchTodo.fulfilled,(state,action)=>{
+            state.isLoading = false;
+            state.todos =action.payload;
+        });
+        builder.addCase(fetchTodo.rejected,(state,action)=>{
+            state.isLoading = false
+            state.isError = true
+            state.errorMessage =action.payload
+        });
 
     }
 });
@@ -64,10 +75,10 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos",
 )
 
 export const fetchTodo = createAsyncThunk("todo/fetchTodo",
-    async (_,thunkAPI)=> {
+    async (id,thunkAPI)=> {
     try {
-        const todos = await fetchTodoAPI();
-        return todos;
+        const todo = await fetchTodoAPI(id);
+        return todo;
     } catch (error) {
         return thunkAPI.rejectedWithValue(error)
     }

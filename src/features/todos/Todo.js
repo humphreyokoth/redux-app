@@ -1,12 +1,14 @@
 import React from 'react';
-import { useSelector} from 'react-redux';
-import {todosSelector,fetchTodos, reset} from './todoSlice'
+import { useSelector,useDispatch} from 'react-redux';
+import {todosSelector,fetchTodos, reset} from './todoSlice';
+import { Link } from 'react-router-dom';
 
 
 const Todo = () => {
 
    const { todos,isLoading,isError,errorMessage } = useSelector(todosSelector)
-  const handleClick =()=>{
+  const dispatch = useDispatch();
+   const handleClick =()=>{
     dispatch(reset())
     dispatch(fetchTodos())
   }
@@ -23,7 +25,12 @@ const Todo = () => {
       {isError && <div>{errorMessage}</div>}
       <ul>
         {todos.map((todo,idx)=>(
-          <li key ={idx}>{todo.todo}</li>
+          <li key ={idx}>
+          <Link to ={`/todos/${todo.id}`}>{todo.todo}
+
+          </Link>
+          
+          </li>
         ))}
       </ul>
     </div>
