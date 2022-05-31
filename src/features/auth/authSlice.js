@@ -31,37 +31,5 @@ export const authSlice = createSlice({
     
 })
 
-const authLogout = () => {
-    const access_token = localStorage.getItem("access_token");
-    const refresh_token = localStorage.getItem("refresh_token");
-    fetch("http://localhost:5000/api/v1/auth/logout", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 200) {
-          fetch("http://localhost:5000/api/v1/auth/logout/refresh", {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${refresh_token}`,
-            },
-          })
-            .then((res) => {
-              if (res.status === 500) {
-                localStorage.clear();
-                // window.location.href = "/login";
-              }
-            })
-            .catch((err) => {
-              return err;
-            });
-        }
-      })
-      .catch((err) => {
-        return err;
-      });
-  };
-  
+
 
