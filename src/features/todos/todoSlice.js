@@ -56,7 +56,7 @@ export const todoSlice = createSlice({
         builder.addCase(fetchTodo.rejected,(state,action)=>{
             state.isLoading = false
             state.isError = true
-            state.errorMessage =action.payload
+            state.errorMessage =action.payload.message;
         });
 
     }
@@ -68,7 +68,7 @@ export const fetchTodos = createAsyncThunk("todos/fetchTodos",
         const todos = await fetchTodosAPI();
         return todos;
     } catch (error) {
-        return thunkAPI.rejectedWithValue(error)
+        return thunkAPI.rejectWithValue(error)
     }
         
     }
@@ -80,7 +80,7 @@ export const fetchTodo = createAsyncThunk("todo/fetchTodo",
         const todo = await fetchTodoAPI(id);
         return todo;
     } catch (error) {
-        return thunkAPI.rejectedWithValue(error)
+        return thunkAPI.rejectWithValue(error)
     }
         
     }

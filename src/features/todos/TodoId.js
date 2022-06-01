@@ -20,13 +20,15 @@ const TodoId = () => {
   }
   return (
     <div>
-      {todo && (
+      {todo.completed ? (
         <>
           <h4>TODO</h4>
           <div>{todo.todo}</div>
-          <h5>Completed: {todo.completed.toString()}</h5>
+          <h5>Completed:{todo.completed.toString()}</h5>
           <small>{todo.userId}</small>
         </>
+      ):(
+        <div>{todo.message}</div>
       )}
     </div>
   );
