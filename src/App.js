@@ -12,7 +12,7 @@ function App() {
            <Router>
              <Routes>
               <Route path='/' element={<Todo/>}/>
-              <Route path='/:id' element ={<TodoId/>}/>
+              <Route path='/todos/:id' element ={<TodoId/>}/>
              </Routes>
            </Router>
     
