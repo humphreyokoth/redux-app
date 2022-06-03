@@ -10,6 +10,7 @@ errorMessage:"",
 
 }
 
+
 const authLogin = async (userData)=> {
     const res = await fetch("",{
     method:"POST",
@@ -27,9 +28,21 @@ localStorage.setItem("access_token",resData.access_token);
 localStorage.setItem("refresh_token",resData.refresh_token);
 return resData;
 }
-export const authSlice = createSlice({
-    
-})
 
+export const authSlice = createSlice({
+    name:"auth",
+    initialState,
+    reducers:{
+        reset:(state)=>{
+            state.isAuthenticated =false;
+            state.user = null;
+            state.isLoading = false;
+            state.isError = false;
+            state.errorMessage = "";
+
+        }
+    },
+ 
+ })
 
 
