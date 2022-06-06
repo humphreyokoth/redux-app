@@ -33,7 +33,7 @@ export const Login = () => {
         dispatch(reset());
       }, 5000);
     }
-  }, [isAuthenticated.isError, dispatch, reset]);
+  }, [isAuthenticated.isError, dispatch,navigate]);
 
   return (
     <div>

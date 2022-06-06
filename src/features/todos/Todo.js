@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector,useDispatch} from 'react-redux';
 import {todosSelector,fetchTodos, reset} from './todoSlice';
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { authSelector  } from '../auth/authSlice';
 
 const Todo = () => {
 
-   const { todos,isLoading,isError,errorMessage } = useSelector(todosSelector)
+   const { todos,isLoading,isError,errorMessage } = useSelector(todosSelector);
+   const {isAuthenticated} = useSelector(authSelector);
   const dispatch = useDispatch();
+  const navigate =useNavigate();
    const handleClick =()=>{
     dispatch(reset())
     dispatch(fetchTodos())
   }
    
+  useEffect(()=>{
+    if(isAuthenticated){
+      navigate("/login")
+    }
+  },[isAuthenticated,navigate]);
 
   return (
     <div>
