@@ -51,7 +51,7 @@ export const authSlice = createSlice({
     builder.addCase(loginUser.rejected, (state,action) => {
       state.isLoading = false;
       state.isError = true;
-      state.errorMessage = action.error.message;
+      state.errorMessage = action.payload;
     });
   },
 });
@@ -63,7 +63,7 @@ export const loginUser = createAsyncThunk(
       const res = await authLogin(userData);
       return res;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
