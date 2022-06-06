@@ -67,3 +67,7 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const {reset} = authSlice.actions;
+export const authSelector =() =>state.auth;
+
+export default authSlice.reducer;
